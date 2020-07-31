@@ -1,5 +1,9 @@
 #include <stdio.h>
-void enshu_1_5(void)
+int enshu_1_5(void)
 {
-printf("unsigned long int: %d\n", sizeof (unsigned long int),"\n");
+return sizeof (unsigned long int);
+}
+int main(){
+  printf("%d",enshu_1_5());
+    return 0;
 }

@@ -46,7 +46,6 @@ return counter;
 int main(void)
 {
 
-  printf("%d",enshu_1_10(100000));
   printf("\n");
 
  return 0;
