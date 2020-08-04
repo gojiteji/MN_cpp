@@ -1,30 +1,44 @@
 #include <stdio.h>
+#include <string.h>
+
 
 void enshu_3_8(char **argv,char *buffer){
     char ret[1024];
     int i=0;
     while(!(*argv==NULL)){ 
         while(!(**argv=='\0')){
-        *buffer=**argv;
-        i++;
-        buffer++;
+        //*buffer=**argv;
+        if(!(**argv=='\n')){
+        ret[i]=**argv;
+                i++;
+        }
         (*argv)++;
         }
         argv++;
     }
 
+    ret[i]='\0';
 
+    buffer=ret;
+    i=0;
+    while(!(ret[i]=='\0')){
+    strcpy(buffer, ret[i]);
+    buffer++;
+    i++;
+    }
     
-    buffer='\0';
-    buffer -=i;
-}
+printf("%a,has,",buffer);
+printf("%c",*buffer);
 
+}
 int main(){
-    char *strv[] = { "000", "111", "222", "333" };
+
+    char *a;    
+     char *strv[] = { "000", "-111", "222", "333" };
     char **pv = strv; 
-    char *a;
     enshu_3_8(pv,&a);
-    printf("%c",a);
+    printf("%a,has,",a);
+
 
     return 0;
 }

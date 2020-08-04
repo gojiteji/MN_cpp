@@ -1,36 +1,38 @@
 #include <stdio.h>
 
-void enshu_3_8(char **argv,char *buffer){
+
+void enshu_3_9(char **argv,char *buffer){
     char ret[1024];
     int i=0;
-    int add=0;
+    if(!(argv==NULL)){
     while(!(*argv==NULL)){ 
-        if(**argv=='-'){
-            add=1;
-        }
+        int head =1;
+        int has_m=0;
         while(!(**argv=='\0')){
-            if(add == 1 ){
+            if(head==1){
+                head=0;
+                if(!(**argv=='-')){
+                    has_m=1;
+                }
+            }
+        if(has_m=1){
         *buffer=**argv;
         i++;
-        buffer++;
             }
         (*argv)++;
         }
         argv++;
     }
+    }
+
+    *buffer='\0';
+
+    buffer=buffer -i;
 
 
-    
-    buffer='\0';
-    buffer -=i;
 }
-
 int main(){
-    char *strv[] = { "000", "111", "222", "333" };
-    char **pv = strv; 
-    char *a;
-    enshu_3_8(pv,&a);
-    printf("%c",a);
+
 
     return 0;
 }
