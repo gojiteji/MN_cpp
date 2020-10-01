@@ -15,35 +15,35 @@ Wordtab enshu_4_3(char*text){
     w.endptr=NULL;
     w.word[0]='\0';
     if(text == NULL){
-        return w;
     }
     int i=0;
     int cont=0;
     while(1){//後ろのループ
-        if(text=='\0'){
-            break;
-        }
         if(isalpha(*text)){
             if(cont==0){//初めてのalphabet
                 w.wordptr==text;
             }
+
             w.word[i]=*text;
             i++;
             cont=1;
         }
-        if(cont==1 && isalpha(*text)==0){//続いててalphabet以外がでたら
+
+        if((cont==1) && (isalpha(*text)==0)||(i>14)||(*text=='\0')){//続いててalphabet以外がでたら
             w.endptr=text;
-	        w.word[i]='\0';    
+	        w.word[i]=='\0';
+	       
 	        return w;
         }
         text++;
     }
-    return w;
-    
 }
 
 
 int main() {
-    
-	return 0;
+    Wordtab txt=enshu_4_3("AEDHTBEeondonbopXrlGD");
+    char * tmp="main output is:";
+    printf("%s",tmp);
+    printf("\n%s",txt.word);
+    return 0;
 }
