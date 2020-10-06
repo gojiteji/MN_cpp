@@ -15,13 +15,14 @@ Wordtab enshu_4_3(char*text){
     w.endptr=NULL;
     w.word[0]='\0';
     if(text == NULL){
+        return w;
     }
     int i=0;
     int cont=0;
-    while(1){//å„ÇÎÇÃÉãÅ[Év
+    while(1){//Âæå„Çç„ÅÆ„É´„Éº„Éó
         if(isalpha(*text)){
-            if(cont==0){//èâÇﬂÇƒÇÃalphabet
-                w.wordptr==text;
+            if(cont==0){//Âàù„ÇÅ„Å¶„ÅÆalphabet
+                w.wordptr=text;
             }
 
             w.word[i]=*text;
@@ -29,9 +30,9 @@ Wordtab enshu_4_3(char*text){
             cont=1;
         }
 
-        if((cont==1) && (isalpha(*text)==0)||(i>14)||(*text=='\0')){//ë±Ç¢ÇƒÇƒalphabetà»äOÇ™Ç≈ÇΩÇÁ
+        if(((cont==1) && (isalpha(*text)==0))||(i>14)||(*text=='\0')){//Á∂ö„ÅÑ„Å¶„Å¶alphabet‰ª•Â§ñ„Åå„Åß„Åü„Çâ
             w.endptr=text;
-	        w.word[i]=='\0';
+	        w.word[i]='\0';
 	       
 	        return w;
         }
@@ -41,7 +42,7 @@ Wordtab enshu_4_3(char*text){
 
 
 int main() {
-    Wordtab txt=enshu_4_3("AEDHTBEeondonbopXrlGD");
+    Wordtab txt=enshu_4_3("23198aknvkornaaeafrafergaeg90u90vap");
     char * tmp="main output is:";
     printf("%s",tmp);
     printf("\n%s",txt.word);
