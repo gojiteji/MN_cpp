@@ -5,7 +5,16 @@
 
 char * enshu_4_5(char **argv){
     int i=0;
-    char *buffer = malloc(strlen(*argv) + 1);
+
+    int l=0;
+    while(1){
+        if(argv==NULL){
+            break;
+        }
+        argv++;
+        l++;
+    }
+    char *buffer = malloc(l + 1);
     if(buffer==NULL)
         return NULL;
     while(!(*argv==NULL)){ 
@@ -27,7 +36,11 @@ char * enshu_4_5(char **argv){
 
 }
 int main(){
-
+    char *a;    
+     char *strv[] = { "000", "-111", "222", "333" };
+    char **pv = strv; 
+    a=enshu_4_5(pv);
+    printf("%s",a);
 
     return 0;
 }
