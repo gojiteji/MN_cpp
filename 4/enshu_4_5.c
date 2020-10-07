@@ -8,12 +8,13 @@ char * enshu_4_5(char **argv){
 
     int l=0;
     while(1){
-        if(argv==NULL){
+        if(*argv==NULL){
             break;
         }
         argv++;
         l++;
     }
+    argv=argv-l;
     char *buffer = malloc(l + 1);
     if(buffer==NULL)
         return NULL;
