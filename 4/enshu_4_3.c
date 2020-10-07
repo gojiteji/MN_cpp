@@ -14,7 +14,7 @@ Wordtab enshu_4_3(char*text){
     w.wordptr=NULL;
     w.endptr=NULL;
     w.word[0]='\0';
-    if(text == NULL){
+    if(text == NULL || text == "" || text == '\0'){
         return w;
     }
     int i=0;
@@ -30,8 +30,9 @@ Wordtab enshu_4_3(char*text){
             cont=1;
         }
 
-        if(((cont==1) && (isalpha(*text)==0))||(i>14)||(*text=='\0')){//続いててalphabet以外がでたら
-            w.endptr=text;
+        if(((cont==1) && (isalpha(*text)==0))||(i>14)||(*text=='\0')){//続いててalphabet以外がでたら		
+		text--;
+            w.endptr=(text);
 	        w.word[i]='\0';
 	       
 	        return w;

@@ -7,10 +7,11 @@ typedef struct {
 } WordHolder; 
 
 
-void quicksort(WordHolder wh[], int lpos,int rpos){
+
+void enshu_4_4(WordHolder wh[], int lpos, int rpos){
     int i=lpos;
     int j=rpos;
-    int pivot=(lpos+rpos)/2;
+    int pivot=lpos;
     while(1){
         //until find larger left
         while(strcmp((wh[i].word),(wh[pivot].word))<0){i++;}
@@ -18,41 +19,42 @@ void quicksort(WordHolder wh[], int lpos,int rpos){
         while(strcmp((wh[j].word),(wh[pivot].word))>0){j--;}
         if(i>=j){break;}
         //swap
-        char * tmp = wh[i].word;
-        wh[i].word=wh[j].word;
-        wh[j].word=tmp;
+        WordHolder  tmp = wh[i];
+        wh[i]=wh[j];
+        wh[j]=tmp;
         i++;
-        j++;
+        j--;
         }
     //array on left
-    if(i-lpos>=2){
-        quicksort( wh, lpos, i - 1 );
+    if(i-lpos>=1){
+        enshu_4_4( wh, lpos, i-1 );
     }
     //array on right
-    if(rpos-j>=2){
-        quicksort( wh, j + 1, rpos );
+    if(rpos-j>=1){
+        enshu_4_4( wh, j + 1, rpos );
     }
-}
-
-void enshu_4_4(WordHolder wh[], int lpos, int rpos){
-    quicksort(wh,lpos,rpos);
 }
 
 int main() {
-    WordHolder wh[4];
-    wh[0].word="C";
-    wh[1].word="B";
-    wh[2].word="D";
-    wh[3].word="C";
-    printf("%s\n",wh[0].word);
-    printf("%s\n",wh[1].word);
-    printf("%s\n",wh[2].word);
-    printf("%s\n\n",wh[3].word);
-    enshu_4_4(wh,0,3);
-    printf("%s\n",wh[0].word);
-    printf("%s\n",wh[1].word);
-    printf("%s\n",wh[2].word);
-    printf("%s\n",wh[3].word);
+int s=9;
+    WordHolder wh[s];
+    wh[0].word="visit";
+    wh[1].word="hope";
+    wh[2].word="admit";
+    wh[3].word="manufacture";
+    wh[4].word="tiger";
+    wh[5].word="elephant";
+    wh[6].word="lion";
+    wh[7].word="giraf";
+    wh[8].word="rabbit";
 
+	int i=0;
+	for(i;i<s;i++){
+    printf("%s\n",wh[i].word);
+}printf("\n");
+    enshu_4_4(wh,0,s);
+ 	for(i=0;i<s;i++){
+    printf("%s\n",wh[i].word);
+}
 	return 0;
 }
