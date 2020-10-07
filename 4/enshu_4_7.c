@@ -19,15 +19,15 @@ WordList *enshu_4_7(WordList *wl){
         l++;
     }
     WordList *tmp = malloc(sizeof(WordList));
-    //WordList *wl2 = wl;
-    //tmp->next=NULL;
-    //(tmp->word)=wl->word;
-    //l--;
-    //wl2=wl->next;
+    WordList *wl2 = wl;
+    tmp->next=NULL;
+    (tmp->word)=wl->word;
+    l--;
+    wl2=wl->next;
     while(l>=0){
     WordList *tmp2 = malloc(sizeof(WordList));
-    //tmp2->next=tmp;
-    //(tmp2->word)=wl;
+    tmp2->next=tmp;
+    (tmp2->word)=wl2->word;
     l--;
     wl2=wl2->next;
     tmp=tmp2;
@@ -37,10 +37,12 @@ WordList *enshu_4_7(WordList *wl){
 
 
 int main(){
-    WordList *a;
-    WordList *b;
-    WordList *c;
-    WordList *d;
+    
+    WordList *a=malloc(sizeof(WordList));
+    WordList *b=malloc(sizeof(WordList));
+    WordList *c=malloc(sizeof(WordList));
+    WordList *d=malloc(sizeof(WordList));
+
     a->next=b;
     a->word="a";
     b->next=c;
@@ -49,11 +51,11 @@ int main(){
     c->word="c";
     d->next=NULL;
     d->word="d";
-
+    
     a=enshu_4_7(a);
-    //printf("%s\n",a->word);
-    //printf("%s\n",(a->next)->word);
-    //printf("%s\n",((a->next)->next)->word);
-    //printf("%s\n",(((a->next)->next)->next)->word);
+    printf("%s\n",a->word);
+    printf("%s\n",(a->next)->word);
+    printf("%s\n",((a->next)->next)->word);
+    printf("%s\n",(((a->next)->next)->next)->word);
     return 0;
 }
