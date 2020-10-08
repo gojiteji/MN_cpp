@@ -12,17 +12,20 @@ unsigned int kadai_5_1_hash(char *str){
 		return 0;
 	}
 	int hash=0;
+	int add = (int)(*str);
+	add = add%127;//first cycle only 
 	while(1){
-		int add = (int)(*str);
-		hash=hash+(add%127);
 		if(*(str+1)=='\0'){
+			hash=hash+add;
 			break;
 		}else{
-			hash=hash*256;
+			hash=hash+add*256;
 			str++;
+			add = (int)(*str);
+			add = add%127;
 		}
 	}
-	return hash%127;
+	return hash;
 }
 
 char *kadai_5_1_search(WordList *dictionary[], char*keyword){
@@ -62,9 +65,9 @@ void kadai_5_1_append(WordList *dictionary[], char *e_word,char *j_word){
 }
 
 int main(){
-	WordList *w[128];
-	kadai_5_1_append(w,"hello","おはよう");
-	printf("%s",kadai_5_1_search(w,"hello"));
+	//WordList *w[128];
+	//kadai_5_1_append(w,"hello","おはよう");
+	printf("%d",kadai_5_1_hash("hello"));
 	return 0;
 }
 

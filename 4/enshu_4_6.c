@@ -35,13 +35,12 @@ WordList *enshu_4_6(char **argv){
 
 int main(){
     WordList *a;    
-    char *strv[] = { "dog", "cat", "lion", "sheep" };
+    char *strv[] = { "dog", "cat", "lion", "sheep","dog", "cat", "lion", "sheep" ,"dog", "cat", "lion", "sheep","dog", "cat", "lion", "sheep" };
     char **pv = strv; 
     a=enshu_4_6(pv);
-    printf("%s\n",a->word);
-    printf("%s\n",(a->next)->word);
-    printf("%s\n",((a->next)->next)->word);
-    printf("%s\n",(((a->next)->next)->next)->word);
-
+    while(a->next!=NULL){
+	printf("%s\n",a->word);
+	a=a->next;
+     }
     return 0;
 }

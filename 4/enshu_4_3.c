@@ -33,23 +33,57 @@ Wordtab enshu_4_3(char*text){
         }
 
         if(((cont==1) && (isalpha(*text)==0))||(i>14)||(*text=='\0')){//続いててalphabet以外がでたら		
-		if(!(counter ==0)){
 		text++;
-	printf("%c\n",text);
-           w.endptr=(text);
+			if(i>14){
+			while(1){
+			if(isalpha(*text)){
+					text++;			
+				}else{
+	         		w.endptr=--text;				
+					break;				
+				}
 			}
+				}
 	        w.word[i]='\0';
 	        return w;
         }
+	//printf("%a\n",text);
         text++;
     }
 }
 
 
 int main() {
-    Wordtab txt=enshu_4_3("23198aknvkornaaeafrafergaeg90u90vap");
-    char * tmp="main output is:";
-    printf("%s",tmp);
-    printf("\n%s",txt.word);
+    char* inpt="AEDHTBEeondonbopXrlGD";
+    Wordtab txt=enshu_4_3(inpt);
+    printf("in   :%s\n",inpt);
+    printf("out  :%s\n",txt.word);
+	if(txt.wordptr==NULL){
+    printf("head :%s\n",txt.wordptr);	
+	}else{
+    printf("head :%c,%a\n",*txt.wordptr,txt.wordptr);
+	}
+	if(txt.endptr==NULL){
+    printf("tail :%s\n",txt.endptr);	
+	}else{
+    printf("tail :%c,%a\n",*txt.endptr,txt.endptr);
+	}
+
+    inpt="     NNNMMMWWW  ";
+    txt=enshu_4_3(inpt);
+    printf("in   :%s\n",inpt);
+    printf("out  :%s\n",txt.word);
+	if(txt.wordptr==NULL){
+    printf("head :%s\n",txt.wordptr);	
+	}else{
+    printf("head :%c,%a\n",*txt.wordptr,txt.wordptr);
+	}
+	if(txt.endptr==NULL){
+    printf("tail :%s\n",txt.endptr);	
+	}else{
+    printf("tail :%c,%a\n",*txt.endptr,txt.endptr);
+	}
+
     return 0;
 }
+
