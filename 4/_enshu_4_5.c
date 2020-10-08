@@ -19,7 +19,7 @@ char * enshu_4_5(char **argv){
     if(buffer==NULL)
         return NULL;
     while(!(*argv==NULL)){ 
-        while(!(**argv=='\0')){
+        while(!(argv[0][0]=='\0')){
         strcpy(buffer,*argv);
         buffer++;
         i++;
@@ -29,8 +29,6 @@ char * enshu_4_5(char **argv){
     }
 
     *buffer='\0';
-    
-
     buffer=buffer -i;
     return buffer;
 
@@ -46,17 +44,5 @@ int main(){
     return 0;
 }
 
-    © 2020 GitHub, Inc.
-    Terms
-    Privacy
-    Security
-    Status
-    Help
-    Contact GitHub
-    Pricing
-    API
-    Training
-    Blog
-    About
 
 

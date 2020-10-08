@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -36,7 +35,7 @@ WordList *enshu_4_6(char **argv){
 
 int main(){
     WordList *a;    
-    char *strv[] = { "000", "-111", "222", "333" };
+    char *strv[] = { "dog", "cat", "lion", "sheep" };
     char **pv = strv; 
     a=enshu_4_6(pv);
     printf("%s\n",a->word);
