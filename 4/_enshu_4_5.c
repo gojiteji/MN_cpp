@@ -28,6 +28,7 @@ char * enshu_4_5(char **argv){
         argv++;
     }
 
+
     *buffer='\0';
     buffer=buffer -i;
     return buffer;
