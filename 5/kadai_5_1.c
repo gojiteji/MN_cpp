@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 typedef struct wordlist {
     char *eng;
     char *jpn;
@@ -39,13 +39,14 @@ char *kadai_5_1_search(WordList *dictionary[], char*keyword){
 	}
 	WordList *w=dictionary[kadai_5_1_hash(keyword)];
 	while(1){
-		if(w->eng==keyword){
-		return w->jpn;		
-		}
+        if(strcmp(w->eng,keyword)==0){
+            return w->jpn;
+        }
 		//couldn't find
 		if(w->next==NULL){
 		return NULL;		
 		}
+
 		w=w->next;
 	}
 }
@@ -54,25 +55,33 @@ void kadai_5_1_append(WordList *dictionary[], char *e_word,char *j_word){
 	WordList *tmp = malloc(sizeof(WordList));
 	tmp->eng=e_word;
 	tmp->jpn=j_word;
-	
-	if(dictionary[kadai_5_1_hash(e_word)]==NULL){
+	tmp->next=NULL;
+	if(dictionary[kadai_5_1_hash(e_word)]==NULL){//new hash number
 		dictionary[kadai_5_1_hash(e_word)]=tmp;
-	}else{
-		WordList *next=dictionary[kadai_5_1_hash(e_word)]->next;
-		while(1){
-			if(next->next==NULL){
-				break;
-			}
-			next=next->next;
+	}else{                                       //existing hash number
+		WordList *head=dictionary[kadai_5_1_hash(e_word)];
+		//go to the end of a same number of  the wordlist.
+		while(head->next!=NULL){
+			    head=head->next;
 		}
-		dictionary[kadai_5_1_hash(e_word)]->next=tmp;
+		head->next=tmp;
+		printf(NULL);
+		printf(NULL);
 	}
 }
 
 int main(){
-	//WordList *w[128];
-	//kadai_5_1_append(w,"hello","おはよう");
-	printf("%d",kadai_5_1_hash("represent"));
+	WordList *w[128];
+	kadai_5_1_append(w,"represent","代表する");
+	kadai_5_1_append(w,"googlV","ほげほげ");
+	kadai_5_1_append(w,"F","エフ");
+
+	printf("hash:%d\n",kadai_5_1_hash("represent"));
+	if(kadai_5_1_search(w,"represent")!=NULL){
+	printf("%s",kadai_5_1_search(w,"represent"));
+	}else{
+	    printf("\n%s","search null");
+	}
 	return 0;
 }
 
