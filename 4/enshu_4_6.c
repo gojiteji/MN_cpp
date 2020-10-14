@@ -9,13 +9,13 @@ typedef struct wordlist {
     
 WordList *enshu_4_6(char **argv){
     int l=0;
-    while(1){
-        if(*argv==NULL){
-            break;
-        }
+    while(*argv!=NULL){
+        //printf("%d,%s\n",l,*argv);
         argv++;
         l++;
     }
+    argv--;
+    l--;
     WordList *tmp = malloc(sizeof(WordList));
     tmp->next=NULL;
     (tmp->word)=*argv;
@@ -35,9 +35,10 @@ WordList *enshu_4_6(char **argv){
 
 int main(){
     WordList *a;    
-    char *strv[] = { "dog", "cat", "lion", "sheep","dog", "cat", "lion", "sheep" ,"dog", "cat", "lion", "sheep","dog", "cat", "lion", "sheep" };
+    char *strv[] = { "dog", "cat" };
     char **pv = strv; 
     a=enshu_4_6(pv);
+	printf("%s\n","main:");
     while(a->next!=NULL){
 	printf("%s\n",a->word);
 	a=a->next;

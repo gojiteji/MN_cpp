@@ -7,6 +7,10 @@ typedef struct wordlist {
     struct wordlist *next;
 } WordList;
 
+/*
+"represent":70
+
+*/
 unsigned int kadai_5_1_hash(char *str){
 	if((str==NULL) ||( *str=='\0')){
 		return 0;
@@ -14,15 +18,16 @@ unsigned int kadai_5_1_hash(char *str){
 	int hash=0;
 	int add = (int)(*str);
 	add = add%127;//first cycle only 
+	hash=hash+add;
 	while(1){
 		if(*(str+1)=='\0'){
-			hash=hash+add;
 			break;
 		}else{
-			hash=hash+add*256;
 			str++;
+			hash=hash*256;//upper digit
 			add = (int)(*str);
-			add = add%127;
+			hash =hash+add;
+			hash=(hash)%127;
 		}
 	}
 	return hash;
@@ -67,7 +72,7 @@ void kadai_5_1_append(WordList *dictionary[], char *e_word,char *j_word){
 int main(){
 	//WordList *w[128];
 	//kadai_5_1_append(w,"hello","おはよう");
-	printf("%d",kadai_5_1_hash("hello"));
+	printf("%d",kadai_5_1_hash("represent"));
 	return 0;
 }
 

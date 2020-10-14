@@ -19,10 +19,8 @@ Wordtab enshu_4_3(char*text){
     }
     int i=0;
     int cont=0;
-    int counter=0;
     while(1){//後ろのループ
         if(isalpha(*text)){
-		    counter++;
             if(cont==0){//初めてのalphabet
                 w.wordptr=text;
             }
@@ -34,16 +32,21 @@ Wordtab enshu_4_3(char*text){
 
         if(((cont==1) && (isalpha(*text)==0))||(i>14)||(*text=='\0')){//続いててalphabet以外がでたら		
 		text++;
-			if(i>14){
+			if(i>14){//longer tha 14
 			while(1){
 			if(isalpha(*text)){
 					text++;			
 				}else{
-	         		w.endptr=--text;				
+	         		w.endptr=text;				
 					break;				
 				}
 			}
-				}
+			}else{
+			    w.endptr=text;
+			}
+			if(cont==0){
+			    w.endptr=NULL;
+			}
 	        w.word[i]='\0';
 	        return w;
         }
@@ -68,8 +71,43 @@ int main() {
 	}else{
     printf("tail :%c,%a\n",*txt.endptr,txt.endptr);
 	}
+	printf("\n");
 
     inpt="     NNNMMMWWW  ";
+    txt=enshu_4_3(inpt);
+    printf("in   :%s\n",inpt);
+    printf("out  :%s\n",txt.word);
+	if(txt.wordptr==NULL){
+    printf("head :%s\n",txt.wordptr);	
+	}else{
+    printf("head :%c,%a\n",*txt.wordptr,txt.wordptr);
+	}
+	if(txt.endptr==NULL){
+    printf("tail :%s\n",txt.endptr);	
+	}else{
+    printf("tail :%c,%a\n",*txt.endptr,txt.endptr);
+	}
+		
+		printf("\n");
+
+    inpt="";
+    txt=enshu_4_3(inpt);
+    printf("in   :%s\n",inpt);
+    printf("out  :%s\n",txt.word);
+	if(txt.wordptr==NULL){
+    printf("head :%s\n",txt.wordptr);	
+	}else{
+    printf("head :%c,%a\n",*txt.wordptr,txt.wordptr);
+	}
+	if(txt.endptr==NULL){
+    printf("tail :%s\n",txt.endptr);	
+	}else{
+    printf("tail :%c,%a\n",*txt.endptr,txt.endptr);
+	}
+
+		printf("\n");
+
+    inpt="!@#$%^&*(){}|~<><>1234567890[]/?=+;:`";
     txt=enshu_4_3(inpt);
     printf("in   :%s\n",inpt);
     printf("out  :%s\n",txt.word);
