@@ -93,54 +93,46 @@ TreeNode *insertNode(TreeNode *tree, char *key, char *value)
 		return NULL;
 	}
 	if ((tree->right.key != NULL) && strcmp(key, tree->right.key) == 0) {
-		/*
-		///////////////////
-		*/
-		
-		*/
-		///////////////////
-		*/
+		/*///////////////////*/
+		tree->right.value = value;
+		/*////////////////////*/
 		return NULL;
 	}
 	/*
 	* ノード内の要素と一致しなかったので、子孫リンクがあれば進む
 	*/
-		/* child_left の処理 */
-		if ((tree->left.key != NULL) && strcmp(key, tree->left.key) < 0) {
-			/* left より小さい場合、chid_left があれば進む */
-			if (tree->child_left != NULL) {
-				carry_node = insertNode(tree->child_left, key, value);
-			if (carry_node == NULL)
-				/* 子孫から繰り上がりのノードが無ければ終了 */
-				return NULL;
-			}
-		}
-		/* child_right の処理 */
-		else if ((tree->right.key != NULL) && strcmp(key, tree->right.key) > 0) {
-		/* right より大きい場合、chid_right があれば進む */
-		/*
-		///////////////////
-		*/
+	/* child_left の処理 */
+	if ((tree->left.key != NULL) && strcmp(key, tree->left.key) < 0) {
 		/* left より小さい場合、chid_left があれば進む */
-			if (tree->child_left != NULL) {
-				carry_node = insertNode(tree->child_left, key, value);
-			if (carry_node == NULL)
-				/* 子孫から繰り上がりのノードが無ければ終了 */
-				return NULL;
+		if (tree->child_left != NULL) {
+			carry_node = insertNode(tree->child_left, key, value);
+		if (carry_node == NULL)
+			/* 子孫から繰り上がりのノードが無ければ終了 */
+			return NULL;
 		}
-		/*///////////////////
-	*/
+	}
+	/* child_right の処理 */
+	else if ((tree->right.key != NULL) && strcmp(key, tree->right.key) > 0) {
+		/*///////////////////*/
+		/* right より大きい場合、chid_right があれば進む */
+		if (tree->child_right != NULL) {
+			carry_node = insertNode(tree->child_right, key, value);
+		if (carry_node == NULL)
+			/* 子孫から繰り上がりのノードが無ければ終了 */
+			return NULL;
+		}
+		/*///////////////////*/
 	}/* child_center の処理 */
 	else {
 		/* left より大きく right より小さいので、child_center があれば進む */
 		if (tree->child_center != NULL) {
-			/*
-			///////////////////
-			write code here
-			///////////////////
-			*/
+			/*///////////////////*/
+			carry_node = insertNode(tree->child_center, key, value);
+			if (carry_node == NULL)
+			return NULL;
+			/*///////////////////*/
 		}
-		}
+	}
 	/*
 	* 要素を格納する処理
 	* 1) 子孫へのリンクがない場合、left / right にデータを格納する
@@ -165,11 +157,10 @@ TreeNode *insertNode(TreeNode *tree, char *key, char *value)
 			}
 				else {
 					/* right < データ の場合、right 位置にデータを設定 */
-					/*
-					///////////////////
-					write code here
-					///////////////////
-					*/
+					/*///////////////////*/
+					tree->right.key = key;
+					tree->right.value = value;					
+					/*///////////////////*/
 				}
 			}
 		}else {
@@ -235,13 +226,7 @@ TreeNode *insertNode(TreeNode *tree, char *key, char *value)
 		/* Swap sortlist[0] <--> sortlist[1] */
 		SWAP(sortlist[0], sortlist[1]);
 	}
-	if (
-		/*
-	///////////////////
-	write code here
-	///////////////////
-	*/
-	) {
+	if (/*///////////////////*/strcmp(sortlist[1]->left.key, sortlist[2]->left.key)>0/*///////////////////*/) {
 		/* Swap sortlist[1] <--> sortlist[2] */
 		SWAP(sortlist[1], sortlist[2]);}
 		/* right ノードの子孫リンクの調整 */
@@ -250,12 +235,7 @@ TreeNode *insertNode(TreeNode *tree, char *key, char *value)
 		sortlist[1]->child_left = sortlist[0];
 		sortlist[1]->child_center = sortlist[2];
 		/* 中間ノードが繰り上がる */
-		return
-			/*
-			///////////////////
-			write code here
-			///////////////////
-			*/
+		return sortlist[1];
 	}
 	return NULL;
 }
