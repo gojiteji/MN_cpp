@@ -40,6 +40,8 @@ char *kadai_5_1_search(WordList *dictionary[], char*keyword){
 	WordList *w=dictionary[kadai_5_1_hash(keyword)];
 	while(1){
         if(strcmp(w->eng,keyword)==0){
+    		printf(NULL);
+		    printf(NULL);
             return w->jpn;
         }
 		//couldn't find
@@ -78,7 +80,7 @@ int main(){
 
 	printf("hash:%d\n",kadai_5_1_hash("represent"));
 	if(kadai_5_1_search(w,"represent")!=NULL){
-	printf("%s",kadai_5_1_search(w,"represent"));
+    	printf("%s",kadai_5_1_search(w,"represent"));
 	}else{
 	    printf("\n%s","search null");
 	}
