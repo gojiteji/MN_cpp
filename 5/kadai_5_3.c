@@ -18,9 +18,9 @@ typedef struct {
 typedef struct {
 	int length;
 	List path_list;
-} PathData;/*
-*
-関数プロトタイプ
+} PathData;
+/*
+*関数プロトタイプ
 */
 /* 長さ n、全てのメンバー v のリストを返す */
 List initializeList(int val);
@@ -73,10 +73,10 @@ PathData calcDijkstra(Graph *grp, int start_node, int goal_node)
 	for (i = 0; i < index; i++) {
 		int next = link_list.elem[i];
 		/* 距離計算 (確定部分+リンク距離) */
-		distance =/*/////////*/dist_list.elem[index-1]+ next;/*/////////*/
+		distance =/*/////////*/dist_list.elem[cur_node]+grp->adj[cur_node][next] ;/*/////////*/
 		if (distance < temp_list.elem[next]) {
 			/* より短い距離の経路が見つかった場合 */
-			dist_list.elem[index]= distance;
+			temp_list.elem[next]= distance;
 			/* 隣接ノードでの最短経路情報を登録する */
 			path.path_list.elem[next] = cur_node;
 		}
@@ -95,7 +95,7 @@ PathData calcDijkstra(Graph *grp, int start_node, int goal_node)
 			}
 	if (next_node >= 0) {
 		/* 現ノードから最短距離のノード確定、next_node を次の探索ノードに */
-		dist_list.elem[/*/////////*/cur_node/*/////////*/] = temp_list.elem[next_node];
+		dist_list.elem[/*/////////*/next_node/*/////////*/] = temp_list.elem[next_node];
 		cur_node = next_node;
 	}
 	} while (next_node >= 0 && cur_node != goal_node);
@@ -146,9 +146,9 @@ void printPath(PathData path, int start_node, int goal_node)
 	track_path.elem[idx++] =/*/////////*/pos;/*/////////*/
 	do {
 		/* ゴール地点から、最短隣接経路を辿っていく */
-		pos = path.path_list.elem[/*/////////*/idx/*/////////*/];
+		pos = path.path_list.elem[/*/////////*/pos/*/////////*/];
 		track_path.elem[idx++] =/*/////////*/pos;/*/////////*/
-	} while (pos != -1 && pos !=/*/////////*/NULL/*/////////*/);
+	} while (pos != -1 && pos !=/*/////////*/start_node/*/////////*/);
 
 	printf("Path: ");
 	for (i = idx - 1; i >= 0; i--) {
