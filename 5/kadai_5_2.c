@@ -95,7 +95,9 @@ TreeNode *insertNode(TreeNode *tree, char *key, char *value)
 	if ((tree->right.key != NULL) && strcmp(key, tree->right.key) == 0) {
 		/*
 		///////////////////
-		write code here
+		*/
+		
+		*/
 		///////////////////
 		*/
 		return NULL;
@@ -247,6 +249,7 @@ TreeNode *insertNode(TreeNode *tree, char *key, char *value)
 			write code here
 			///////////////////
 			*/
+	}
 	return NULL;
 }
 
@@ -327,8 +330,8 @@ int main()
 	int i;
 	TreeNode *root = NULL;
 	for (i = 0; i < WORDLISTSIZE(wordlist); i++) {
-	printf("%d%s: %s\n", i, wordlist[i].eng, wordlist[i].jpn);
-	root = addTree(root, wordlist[i].eng, wordlist[i].jpn);
+		printf("%d%s: %s\n", i, wordlist[i].eng, wordlist[i].jpn);
+		root = addTree(root, wordlist[i].eng, wordlist[i].jpn);
 	if (root == NULL) {
 		perror("malloc error\n");
 		return 1;
@@ -340,7 +343,8 @@ int main()
 	/* printTree(root); */
 	}
 	printf("\nlisting:\n");
-	listTree(root, 0);return 0;
+	listTree(root, 0);
+	return 0;
 }
 
 
