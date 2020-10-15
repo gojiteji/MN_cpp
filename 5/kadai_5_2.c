@@ -108,20 +108,27 @@ TreeNode *insertNode(TreeNode *tree, char *key, char *value)
 		/* child_left の処理 */
 		if ((tree->left.key != NULL) && strcmp(key, tree->left.key) < 0) {
 			/* left より小さい場合、chid_left があれば進む */
-		if (tree->child_left != NULL) {
-			carry_node = insertNode(tree->child_left, key, value);
-		if (carry_node == NULL)
-			/* 子孫から繰り上がりのノードが無ければ終了 */
-			return NULL;
+			if (tree->child_left != NULL) {
+				carry_node = insertNode(tree->child_left, key, value);
+			if (carry_node == NULL)
+				/* 子孫から繰り上がりのノードが無ければ終了 */
+				return NULL;
+			}
 		}
-	}
-	/* child_right の処理 */
-	else if ((tree->right.key != NULL) && strcmp(key, tree->right.key) > 0) {
+		/* child_right の処理 */
+		else if ((tree->right.key != NULL) && strcmp(key, tree->right.key) > 0) {
 		/* right より大きい場合、chid_right があれば進む */
 		/*
 		///////////////////
-		write code here
-		///////////////////
+		*/
+		/* left より小さい場合、chid_left があれば進む */
+			if (tree->child_left != NULL) {
+				carry_node = insertNode(tree->child_left, key, value);
+			if (carry_node == NULL)
+				/* 子孫から繰り上がりのノードが無ければ終了 */
+				return NULL;
+		}
+		/*///////////////////
 	*/
 	}/* child_center の処理 */
 	else {
