@@ -28,7 +28,7 @@ int gauss_jordan(
   {
     for (j = 0; j < n; j++)
     {
-      inv_a[i][j] = (i == j) ? 1 : 0;
+      inv_a[i][j] = (i == j) ? 1.0 : 0.0;
     }
   }
   /* 各列を順番に処理する */
@@ -41,8 +41,8 @@ int gauss_jordan(
       {
         if (fabs(a[i][icol]) > big)
         {
-          big = fabs(a[i][icol]);
-              pivot_row = i;
+            big = fabs(a[i][icol]);
+            pivot_row = i;
         }
       }
       /* ピボット成分が、演算丸め誤差の分を考慮して、 きわめて 0 に近ければエラー終了とする */
@@ -58,11 +58,11 @@ int gauss_jordan(
         SWAP(a[icol][i], a[pivot_row][i]);
         SWAP(inv_a[icol][i], inv_a[pivot_row][i]);
       }
-      SWAP(b[pivot_row], b[icol]);
+      SWAP(b[icol],b[pivot_row]);
     }
     /* 対角成分を 1 にする */
     {
-      ElemType inv_pivot = 1.0 / a[pivot_row][icol];
+      ElemType inv_pivot = 1.0 / a[icol][icol];
       for (i = 0; i < n; i++)
       {
         a[icol][i]  *= inv_pivot;
@@ -78,10 +78,10 @@ int gauss_jordan(
         ElemType refvalue = a[i][icol];
         for (j = 0; j < n; j++)
         {
-          a[i][j] -= refvalue * a[pivot_row][i];
-          inv_a[i][j] -= refvalue * a[pivot_row][i];
+          a[i][j] -= refvalue * a[icol][j];
+          inv_a[i][j] -= refvalue * inv_a[icol][j];
         }
-        b[i] -= refvalue * a[pivot_row][i];
+        b[i] -= refvalue * b[icol];
       }
     }
   }

@@ -45,8 +45,8 @@ int Jacobi(int n,
           {
             /* 最大値、位置インデックスの保持 (p < q) */ 
             max = fabs(A[i][j]);
-            q = i>j?i:j;
-            p = i<j?i:j;
+            q = i;
+            p = j;
           }
         }
       }
@@ -85,13 +85,13 @@ int Jacobi(int n,
         {
           /* Api, Aip の要素の計算 */
           int k = (j == p) ? i : j;
-          A2[i][j] = cs*A[i][k]-sn*A[i][k];
+          A2[i][j] = cs*A[k][p]-sn*A[k][q];
         }
         else if (i == q || j == q)
         {
           /* Aqi, Aiq の要素の計算 */
           int k = (j == q) ? i : j;
-          A2[i][j] = sn*A[i][k]+cs*A[i][k];
+          A2[i][j] = sn*A[k][p]+cs*A[k][q];
         }
         else
         A2[i][j] = A[i][j];
@@ -110,7 +110,8 @@ int Jacobi(int n,
           X2[i][j] = X[i][j];
       }
     }
-    /* 作業領域からの書き戻し */ for (i = 0; i < n; i++)
+    /* 作業領域からの書き戻し */
+    for (i = 0; i < n; i++)
     {
 
       for (j = 0; j < n; j++)
