@@ -1,35 +1,27 @@
-#include <stdio.h>
+#include<stdio.h>
+#include<string.h>
 
-void enshu_3_8(char **argv,char *buffer){
-    char ret[1024];
-    int i=0;
-    while(!(*argv==NULL)){ 
-        int record=0;
-        if(**argv=='-'){
-            record==1;
-        }
-        while(!(**argv=='\0')){
-            if(record==1){
-        ret[i]=**argv;
-        i++;
-            }
-        (*argv)++;
-        }
-        argv++;
+int enshu_3_10(char *s1, char *s2){
+    if(s1 == NULL && s2 == NULL) return 0;
+    int min_len, s1_len = strlen(s1),s2_len = strlen(s2);
+    if(s1_len < s2_len){
+        min_len = s1_len;
+    }else{
+        min_len = s2_len;
     }
-
-
-    
-    ret[i]='\0';
-    buffer=ret;
-}
-
-int main(){
-    char *strv[] = { "000", "111", "222", "333" };
-    char **pv = strv; 
-    char a;
-    enshu_3_8(pv,&a);
-    printf("%c",a);
-
+    int i;
+    for(i=0;i<min_len;i++){
+        if(*s1 == *s2){
+            s1++;
+            s2++;
+            continue;
+        }else{
+            if(*s1 < *s2){
+                return -1;
+            }else{
+                return 1;
+            }
+        }
+    }
     return 0;
 }
